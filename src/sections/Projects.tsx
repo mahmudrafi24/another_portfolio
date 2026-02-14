@@ -1,7 +1,9 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ExternalLink, Github, Play } from 'lucide-react';
 
+import { ExternalLink, Github, Play } from 'lucide-react';
+import { BiLogoPlayStore } from "react-icons/bi";
+import { FaAppStore, FaAppStoreIos } from "react-icons/fa6";
 const projects = [
   {
     title: 'Image Picker',
@@ -11,6 +13,8 @@ const projects = [
     technologies: ['Dart', 'Kotlin', 'Swift', 'Platform Channels'],
     github: 'https://github.com/mahmudrafi24/image_picker',
     demo: null,
+    playStore: 'https://play.google.com/store/apps/details?id=com.mahmudrafi24.image_picker',
+    appStore: 'https://apps.apple.com/us/app/image-picker/id1649892425',
     color: 'from-purple-500 to-pink-500',
   },
   {
@@ -20,6 +24,8 @@ const projects = [
     image: '/images/project-time-tracker.jpg',
     technologies: ['Flutter', 'Dart', 'WebSockets', 'REST API'],
     github: null,
+    playStore: 'https://play.google.com/store/apps/details?id=com.mahmudrafi24.image_picker',
+    appStore: 'https://apps.apple.com/us/app/image-picker/id1649892425',
     demo: null,
     color: 'from-cyan-500 to-blue-500',
   },
@@ -30,6 +36,8 @@ const projects = [
     image: '/images/project-salon-go.jpg',
     technologies: ['Flutter', 'Firebase', 'Google Maps', 'Push Notifications'],
     github: null,
+    playStore: 'https://play.google.com/store/apps/details?id=com.mahmudrafi24.image_picker',
+    appStore: 'https://apps.apple.com/us/app/image-picker/id1649892425',
     demo: 'https://play.google.com/store/apps/details?id=com.salon.go',
     color: 'from-rose-500 to-orange-500',
   },
@@ -40,6 +48,8 @@ const projects = [
     image: '/images/project-vlepo.jpg',
     technologies: ['Flutter', 'GetX', 'REST API', 'SharedPreferences'],
     github: null,
+    playStore: 'https://play.google.com/store/apps/details?id=com.mahmudrafi24.image_picker',
+    appStore: 'https://apps.apple.com/us/app/image-picker/id1649892425',
     demo: 'https://play.google.com/store/apps/details?id=com.vlepo.alex',
     color: 'from-lime-500 to-green-500',
   },
@@ -170,9 +180,25 @@ export default function Projects() {
 
                 {/* Content */}
                 <div className="p-6">
+                  <div className='w-full flex items-center justify-between'>
                   <h3 className="font-display text-xl font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">
                     {project.title}
-                  </h3>
+                    </h3>
+                    <div className='flex items-center gap-2'>
+                      {project.playStore && (
+                        <a href={project.playStore} target="_blank" rel="noopener noreferrer">
+                          <BiLogoPlayStore size={20} />
+                        </a>
+                      )}
+                      {project.appStore && (
+                        <a href={project.appStore} target="_blank" rel="noopener noreferrer">
+                          <FaAppStore size={20} />
+                        </a>
+                      )}
+
+                    </div>
+                  </div>
+                  
                   <p className="text-text-secondary text-sm mb-4 line-clamp-2">
                     {project.description}
                   </p>
