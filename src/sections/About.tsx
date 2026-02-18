@@ -79,7 +79,7 @@ export default function About() {
               {/* Main image */}
               <div className="relative rounded-3xl overflow-hidden shadow-card-hover border border-theme-border">
                 <img
-                  src="/images/about-profile.png"
+                  src="/images/Portfolio_Image.png"
                   alt="About Md. Modacher Mahmud Rafi"
                   className="w-full aspect-square object-cover"
                 />
@@ -96,7 +96,7 @@ export default function About() {
                 className="absolute -bottom-6 -right-6 bg-surface border border-theme-border rounded-2xl shadow-card p-6"
               >
                 <div className="text-center">
-                  <span className="block text-4xl font-bold text-gradient">1+</span>
+                  <span className="block text-4xl font-bold text-gradient">1.5+</span>
                   <span className="text-sm text-text-secondary">Years Experience</span>
                 </div>
               </motion.div>

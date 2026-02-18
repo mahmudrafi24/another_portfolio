@@ -281,12 +281,11 @@ export default function Hero() {
                   : 'border-white shadow-glow'
               }`}>
                 <img
-                  src="/images/hero-profile.png"
+                  src="/images/Portfolio_Image.png"
                   alt="Md. Modacher Mahmud Rafi"
                   className="w-full h-full object-cover"
                 />
               </div>
-
               {/* Floating badges */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
