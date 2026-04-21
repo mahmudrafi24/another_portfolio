@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Mail, Phone, MapPin, Globe, Download } from 'lucide-react';
+import { Mail, Phone, MapPin, Globe, Eye } from 'lucide-react';
 
 const personalDetails = [
   { icon: Mail, label: 'Email', value: 'work.rafi.mahmud@gmail.com', href: 'mailto:work.rafi.mahmud@gmail.com' },
@@ -79,7 +79,7 @@ export default function About() {
               {/* Main image */}
               <div className="relative rounded-3xl overflow-hidden shadow-card-hover border border-theme-border">
                 <img
-                  src="/images/Portfolio_Image.png"
+                  src="/images/Profile Image.jpeg"
                   alt="About Md. Modacher Mahmud Rafi"
                   className="w-full aspect-square object-cover"
                 />
@@ -160,17 +160,18 @@ export default function About() {
             {/* CTA Button */}
             <motion.div variants={itemVariants}>
               <motion.a
-                href="/resume.pdf"
-                download
-                whileHover={{ 
-                  scale: 1.05, 
-                  boxShadow: '0 10px 40px rgba(0, 229, 255, 0.3)' 
+                href="/resume/Modacher_Mahmud_Rafi_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: '0 10px 40px rgba(0, 229, 255, 0.3)'
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-primary text-white rounded-full font-medium"
               >
-                <Download className="w-5 h-5" />
-                Download Resume
+                <Eye className="w-5 h-5" />
+                View Resume
               </motion.a>
             </motion.div>
           </motion.div>

@@ -18,6 +18,20 @@ const experiences = [
     color: 'from-cyan-500 to-cyan-600',
   },
   {
+    title: 'Flutter Developer - Intern',
+    company: 'Raise IT Solutions Ltd.',
+    location: 'Dhaka, Bangladesh · Remote',
+    period: 'October 2024 - December 2024',
+    description: [
+      'Developed and maintained a Flutter-based browser application, ensuring smooth and efficient web browsing functionality',
+      'Integrated features such as download management, platform device ID recognition, and country-based user detection using APIs',
+      'Implemented Provider for state management, optimizing performance and scalability',
+      'Worked with Firebase to handle user authentication, data storage, and real-time updates',
+      'Focused on UI/UX improvements, enhancing user experience with a responsive and intuitive design',
+    ],
+    color: 'from-purple-500 to-pink-500',
+  },
+  {
     title: 'Python Trainer',
     company: 'ICT Division of Bangladesh',
     location: 'Dhaka, Bangladesh',

@@ -206,7 +206,7 @@ export default function Hero() {
                 <ArrowRight className="w-5 h-5" />
               </motion.a>
               <motion.a
-                href="/resume.pdf"
+                href="/resume/Modacher_Mahmud_Rafi_Resume.pdf"
                 download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -281,7 +281,7 @@ export default function Hero() {
                   : 'border-white shadow-glow'
               }`}>
                 <img
-                  src="/images/Portfolio_Image.png"
+                  src="/images/Profile Image.jpeg"
                   alt="Md. Modacher Mahmud Rafi"
                   className="w-full h-full object-cover"
                 />

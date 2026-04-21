@@ -13,15 +13,15 @@ const projects = [
     technologies: ['Dart', 'Kotlin', 'Swift', 'Platform Channels'],
     github: 'https://github.com/mahmudrafi24/image_picker',
     demo: null,
-    playStore: 'https://play.google.com/store/apps/details?id=com.mahmudrafi24.image_picker',
-    appStore: 'https://apps.apple.com/us/app/image-picker/id1649892425',
+    playStore: null,
+    appStore: null,
     color: 'from-purple-500 to-pink-500',
   },
   {
-    title: 'Time Tracker Application',
-    category: 'Mobile App',
+    title: 'Alpha Track',
+    category: 'HR Management App',
     description: 'Employee time tracking app with real-time synchronization, audio recording/processing features, and collaborative note sections.',
-    image: '/images/project-time-tracker.jpg',
+    image: '/images/AlphaTrack.jpg',
     technologies: ['Flutter', 'Dart', 'WebSockets', 'REST API'],
     github: null,
     playStore: 'https://play.google.com/store/apps/details?id=com.mahmudrafi24.image_picker',
@@ -30,16 +30,64 @@ const projects = [
     color: 'from-cyan-500 to-blue-500',
   },
   {
+    title: 'Sanaeya',
+    category: 'Workshop Management App',
+    description: 'The Senaeya App is an integrated system for managing and operating workshops and auto maintenance centers is fully functional without any additional hardware or software . ',
+    image: '/images/Senaeya.jpg',
+    technologies: ['Flutter', 'Dart', 'Provider', 'Push Notification', 'VIN Decoder', 'Finger Print Recongnize'    ],
+    github: null,
+    playStore: 'https://play.google.com/store/apps/details?id=com.fahadalfayez.senaeya&hl=en-US',
+    appStore: 'https://apps.apple.com/us/app/senaeya-%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D9%8A%D8%A9/id6756404472',
+    demo: null,
+    color: 'from-sky-500 to-indigo-500',
+  },
+  {
+    title: 'Deliverly',
+    category: 'Devlivery App',
+    description: 'Deliverly connects people who need to send items with couriers ready to deliver. The app makes it easy to create delivery requests, match with available couriers, and complete deliveries quickly and securely.',
+    image: '/images/Deliverly.jpg',
+    technologies: ['Flutter', 'Dart', 'Firebase', 'REST API','Google Maps', 'Push Notifications', 'Twilio'],
+    github: null,
+    playStore: 'https://play.google.com/store/apps/details?id=com.ivan.delivery&pcampaignid=web_share',
+    appStore: 'https://apps.apple.com/us/app/deliverly-%D7%9E%D7%A9%D7%9C%D7%95%D7%97%D7%99%D7%9D-%D7%A2%D7%9C-%D7%94%D7%93%D7%A8%D7%9A/id6753113179',
+    demo: null,
+    color: 'from-amber-500 to-orange-500',
+  },
+  {
     title: 'Salon Go',
-    category: 'Mobile App',
+    category: 'Salon Booking App',
     description: 'Cross-platform salon booking app with Google Maps integration, real-time notifications, and seamless booking management.',
     image: '/images/project-salon-go.jpg',
     technologies: ['Flutter', 'Firebase', 'Google Maps', 'Push Notifications'],
     github: null,
     playStore: 'https://play.google.com/store/apps/details?id=com.mahmudrafi24.image_picker',
-    appStore: 'https://apps.apple.com/us/app/image-picker/id1649892425',
-    demo: 'https://play.google.com/store/apps/details?id=com.salon.go',
+    appStore: null,
+    demo: null,
     color: 'from-rose-500 to-orange-500',
+  },
+   {
+    title: 'Project Finder',
+    category: 'Real Estate App',
+    description: 'A subscription-based B2B app for real estate professionals, designed to connect agents with verified developers and manage projects through paid access',
+    image: '/images/projectFinder.jpg',
+    technologies: ['Dart', 'Flutter', 'Platform Channels', 'Provider', 'Firebase', 'Stripe'],
+    github: null,
+    playStore: 'https://play.google.com/store/apps/details?id=com.projectfinderllc.projectfinder',
+    appStore: 'https://apps.apple.com/za/app/project-finder-app/id6754875552',
+    demo: null,
+    color: 'from-fuchsia-500 to-purple-500',
+  },
+  {
+    title: 'Yoga with Jen',
+    category: 'Yoga App',
+    description: 'Yoga With Jen - Personalized Yoga for Flexibility, Stress Relief & Mind-Body Wellness',
+    image: 'public/images/YogawithJen.jpg',
+    technologies: ['Flutter', 'GetX', 'Firebase', 'Google Maps'],
+    github: null,
+    playStore: 'https://play.google.com/store/apps/details?id=com.yoga.users',
+    appStore: null,
+    demo: null,
+    color: 'from-teal-500 to-emerald-500',
   },
   {
     title: 'Vlepo',
@@ -49,8 +97,8 @@ const projects = [
     technologies: ['Flutter', 'GetX', 'REST API', 'SharedPreferences'],
     github: null,
     playStore: 'https://play.google.com/store/apps/details?id=com.mahmudrafi24.image_picker',
-    appStore: 'https://apps.apple.com/us/app/image-picker/id1649892425',
-    demo: 'https://play.google.com/store/apps/details?id=com.vlepo.alex',
+    appStore: null,
+    demo: null,
     color: 'from-lime-500 to-green-500',
   },
 ];
@@ -119,20 +167,20 @@ export default function Projects() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid md:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {projects.map((project) => (
             <motion.div
               key={project.title}
               variants={itemVariants}
-              className="group"
+              className="group h-full"
             >
               <motion.div
                 whileHover={{ y: -10 }}
-                className="relative bg-surface border border-theme-border rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500"
+                className="relative bg-surface border border-theme-border rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500 h-full flex flex-col"
               >
                 {/* Image */}
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-56 overflow-hidden flex-shrink-0">
                   <motion.img
                     src={project.image}
                     alt={project.title}
@@ -179,12 +227,12 @@ export default function Projects() {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <div className='w-full flex items-center justify-between'>
                   <h3 className="font-display text-xl font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">
                     {project.title}
                     </h3>
-                    <div className='flex items-center gap-2'>
+                    <div className='flex items-center gap-2 flex-shrink-0'>
                       {project.playStore && (
                         <a href={project.playStore} target="_blank" rel="noopener noreferrer">
                           <BiLogoPlayStore size={20} />
@@ -198,17 +246,17 @@ export default function Projects() {
 
                     </div>
                   </div>
-                  
+
                   <p className="text-text-secondary text-sm mb-4 line-clamp-2">
                     {project.description}
                   </p>
-                  
+
                   {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex gap-2 overflow-x-auto flex-nowrap mt-auto pb-1 scrollbar-thin">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20"
+                        className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20 whitespace-nowrap flex-shrink-0"
                       >
                         {tech}
                       </span>
