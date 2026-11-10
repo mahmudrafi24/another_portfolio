@@ -1,5 +1,16 @@
 import { useState } from 'react';
-import { ArrowUpRight, Github, Smartphone } from 'lucide-react';
+import { ArrowUpRight, Github, Smartphone, Expand } from 'lucide-react';
+
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+
+const portraitScreenshots = new Set(['/images/AlphaTrack.jpg', '/images/Senaeya.jpg', '/images/Deliverly.jpg', '/images/projectFinder.jpg', '/images/YogawithJen.jpg']);
+
+function AppPreview({ image, title }: { image: string; title: string }) {
+  const portrait = portraitScreenshots.has(image);
+  return <div className={portrait ? 'app-phone' : 'app-existing-mockup'}>
+    <img src={image} alt={`${title} application preview`} loading="lazy" />
+  </div>;
+}
 
 const projects = [
   {
@@ -118,9 +129,22 @@ export default function Projects() {
           {filters.map(category => <button key={category} aria-pressed={filter === category} onClick={() => setFilter(category)}>{category}</button>)}
         </div>
         <p className="sr-only" role="status">{visibleProjects.length} projects shown</p>
-        <div className="project-grid">
-          {visibleProjects.map(project => <article className="project-card" key={project.title}>
-            <div className="project-image"><img src={project.image} alt={project.title} loading="lazy" /><span>{project.category}</span></div>
+        <div className="project-showcase">
+          {visibleProjects.map(project => <article className="project-card app-project" key={project.title}>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="app-preview-stage" aria-label={`Enlarge ${project.title} preview`}>
+                  <span className="app-preview-label"><Smartphone size={14} />{project.category}</span>
+                  <AppPreview image={project.image} title={project.title} />
+                  <span className="app-preview-expand"><Expand size={14} />Enlarge preview</span>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="app-preview-dialog">
+                <DialogTitle>{project.title}</DialogTitle>
+                <DialogDescription className="app-dialog-description">{project.category} · Application preview</DialogDescription>
+                <div className="app-dialog-image"><img src={project.image} alt={`${project.title} full application preview`} /></div>
+              </DialogContent>
+            </Dialog>
             <div className="project-content">
               <div className="project-technologies">{project.technologies.map(tech => <span key={tech}>{tech}</span>)}</div>
               <h3>{project.title}</h3>

@@ -429,3 +429,46 @@ footer p, footer li { font-size: 12px; }
   html { scroll-behavior: auto; }
   .portfolio-button:hover, .project-card:hover { transform: none; }
 }
+
+/* Application notes: full app screens alongside the existing project details. */
+.project-showcase { display: grid; gap: 28px; }
+.project-card.app-project { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+.app-project:hover { transform: none; }
+.app-preview-stage { position: relative; min-height: 465px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; width: 100%; padding: 48px 28px 42px; overflow: hidden; border-right: 1px solid var(--color-border); background: radial-gradient(ellipse at 50% 50%, color-mix(in srgb, var(--color-primary) 11%, transparent), transparent 74%), var(--color-bg); cursor: zoom-in; }
+.app-preview-stage::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(var(--color-border) .7px, transparent .7px); background-size: 20px 20px; opacity: .4; pointer-events: none; }
+.app-preview-label, .app-preview-expand { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 7px; color: var(--color-text-secondary); font: 10px/1.5 ui-monospace, monospace; }
+.app-preview-label { letter-spacing: .04em; }
+.app-preview-expand { color: var(--color-primary); border: 1px solid var(--color-border); border-radius: 5px; padding: 7px 11px; background: var(--color-surface); }
+.app-phone { position: relative; width: 174px; padding: 5px; background: #111622; border: 1px solid #697184; border-radius: 26px; box-shadow: 0 20px 42px #0005, inset 0 0 0 2px #303746; transition: transform .25s; }
+.app-phone::before, .app-phone::after { content: ''; position: absolute; width: 3px; border-radius: 2px; background: #697184; }
+.app-phone::before { left: -3px; top: 60px; height: 38px; }
+.app-phone::after { right: -3px; top: 74px; height: 28px; }
+.app-phone img { display: block; width: 100%; height: auto; border-radius: 21px; aspect-ratio: 1080 / 2340; object-fit: contain; background: white; }
+.app-existing-mockup { position: relative; z-index: 1; width: 100%; max-width: 360px; display: grid; place-items: center; min-height: 330px; }
+.app-existing-mockup img { width: 100%; height: auto; max-height: 350px; object-fit: contain; border-radius: 9px; }
+.app-project .project-content { justify-content: center; padding: 42px; }
+.app-project .project-content h3 { font-size: clamp(24px, 3vw, 34px); margin-bottom: 18px; }
+.app-project .project-content p { font-size: 14px; line-height: 1.95; margin-bottom: 28px; }
+.app-project .project-technologies { margin-bottom: 20px; gap: 7px; }
+.app-project .project-technologies span { padding: 4px 8px; font-size: 11px; }
+.app-project .project-links { margin-top: 0; gap: 18px; padding-top: 22px; }
+.app-project .project-links a { font-size: 12px; }
+.app-preview-stage:hover .app-phone { transform: translateY(-4px); }
+.app-project:hover img { transform: none; }
+.app-preview-dialog { width: min(900px, calc(100vw - 32px)); max-width: 900px !important; max-height: 92svh; overflow-y: auto; background: var(--color-surface); color: var(--color-text-primary); border-color: var(--color-border); }
+.app-preview-dialog h2 { padding-right: 32px; font-size: 20px; font-weight: 650; }
+.app-dialog-description { color: var(--color-text-secondary); font-size: 12px; }
+.app-dialog-image { display: grid; place-items: center; min-height: 0; }
+.app-dialog-image img { max-height: 70svh; max-width: 100%; width: auto; object-fit: contain; border-radius: 8px; }
+@media (max-width: 767px) {
+  .project-card.app-project { grid-template-columns: 1fr; }
+  .app-preview-stage { border-right: 0; border-bottom: 1px solid var(--color-border); min-height: 420px; padding: 28px 22px; gap: 18px; }
+  .app-phone { width: 155px; }
+  .app-existing-mockup { min-height: 290px; }
+  .app-project .project-content { padding: 25px; }
+  .app-project .project-content h3 { font-size: 26px; }
+  .app-project .project-content p { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-preview-stage:hover .app-phone { transform: none; }
+}
