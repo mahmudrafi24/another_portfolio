@@ -21,12 +21,12 @@ function App() {
     <ThemeProvider>
       <div className={`min-h-screen bg-bg transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         <Navigation />
-        <main>
+        <main id="main-content">
           <Hero />
           <About />
-          <Experience />
-          <Projects />
           <Skills />
+          <Projects />
+          <Experience />
           <Education />
           <Contact />
         </main>
