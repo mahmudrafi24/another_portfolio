@@ -1,9 +1,6 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useState } from 'react';
+import { ArrowUpRight, Github, Smartphone } from 'lucide-react';
 
-import { ExternalLink, Github, Play } from 'lucide-react';
-import { BiLogoPlayStore } from "react-icons/bi";
-import { FaAppStore, FaAppStoreIos } from "react-icons/fa6";
 const projects = [
   {
     title: 'Image Picker',
@@ -81,7 +78,7 @@ const projects = [
     title: 'Yoga with Jen',
     category: 'Yoga App',
     description: 'Yoga With Jen - Personalized Yoga for Flexibility, Stress Relief & Mind-Body Wellness',
-    image: 'public/images/YogawithJen.jpg',
+    image: '/images/YogawithJen.jpg',
     technologies: ['Flutter', 'GetX', 'Firebase', 'Google Maps'],
     github: null,
     playStore: 'https://play.google.com/store/apps/details?id=com.yoga.users',
@@ -103,191 +100,41 @@ const projects = [
   },
 ];
 
+
 export default function Projects() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.16, 1, 0.3, 1] as const,
-      },
-    },
-  };
-
+  const [filter, setFilter] = useState('All');
+  const filters = ['All', 'Flutter Package', ...new Set(projects.filter(project => project.category !== 'Flutter Package').map(project => project.category))];
+  const visibleProjects = filter === 'All' ? projects : projects.filter(project => project.category === filter);
   return (
-    <section
-      id="projects"
-      ref={sectionRef}
-      className="relative py-20 lg:py-32 bg-bg overflow-hidden"
-    >
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="text-primary font-medium text-sm uppercase tracking-wider mb-4 block">
-            My Work
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-4">
-            Featured <span className="text-gradient">Projects</span>
-          </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto">
-            Here are some of my recent projects that showcase my skills in Flutter development
-            and mobile app design.
-          </p>
-        </motion.div>
-
-        {/* Projects Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {projects.map((project) => (
-            <motion.div
-              key={project.title}
-              variants={itemVariants}
-              className="group h-full"
-            >
-              <motion.div
-                whileHover={{ y: -10 }}
-                className="relative bg-surface border border-theme-border rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500 h-full flex flex-col"
-              >
-                {/* Image */}
-                <div className="relative h-56 overflow-hidden flex-shrink-0">
-                  <motion.img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                  />
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-bg/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Category badge */}
-                  <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${project.color}`}>
-                    {project.category}
-                  </div>
-                  
-                  {/* Action buttons */}
-                  <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                    {project.github && (
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="p-2 bg-surface border border-theme-border rounded-full text-text-primary hover:text-primary hover:border-primary transition-colors"
-                      >
-                        <Github className="w-5 h-5" />
-                      </motion.a>
-                    )}
-                    {project.demo && (
-                      <motion.a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="p-2 bg-surface border border-theme-border rounded-full text-text-primary hover:text-primary hover:border-primary transition-colors"
-                      >
-                        <Play className="w-5 h-5" />
-                      </motion.a>
-                    )}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className='w-full flex items-center justify-between'>
-                  <h3 className="font-display text-xl font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">
-                    {project.title}
-                    </h3>
-                    <div className='flex items-center gap-2 flex-shrink-0'>
-                      {project.playStore && (
-                        <a href={project.playStore} target="_blank" rel="noopener noreferrer">
-                          <BiLogoPlayStore size={20} />
-                        </a>
-                      )}
-                      {project.appStore && (
-                        <a href={project.appStore} target="_blank" rel="noopener noreferrer">
-                          <FaAppStore size={20} />
-                        </a>
-                      )}
-
-                    </div>
-                  </div>
-
-                  <p className="text-text-secondary text-sm mb-4 line-clamp-2">
-                    {project.description}
-                  </p>
-
-                  {/* Technologies */}
-                  <div className="flex gap-2 overflow-x-auto flex-nowrap mt-auto pb-1 scrollbar-thin">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20 whitespace-nowrap flex-shrink-0"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* View All Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-12"
-        >
-          <motion.a
-            href="https://github.com/mahmudrafi24"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-all"
-          >
-            <Github className="w-5 h-5" />
-            View All Projects
-            <ExternalLink className="w-4 h-4" />
-          </motion.a>
-        </motion.div>
+    <section id="projects" className="portfolio-section">
+      <div className="section-container">
+        <header className="section-heading">
+          <span className="section-kicker">My Work</span>
+          <h2>Featured <span className="text-gradient">Projects</span></h2>
+          <p>Here are some of my recent projects that showcase my skills in Flutter development
+            and mobile app design.</p>
+        </header>
+        <div className="project-filters" role="group" aria-label="Filter projects by category">
+          {filters.map(category => <button key={category} aria-pressed={filter === category} onClick={() => setFilter(category)}>{category}</button>)}
+        </div>
+        <p className="sr-only" role="status">{visibleProjects.length} projects shown</p>
+        <div className="project-grid">
+          {visibleProjects.map(project => <article className="project-card" key={project.title}>
+            <div className="project-image"><img src={project.image} alt={project.title} loading="lazy" /><span>{project.category}</span></div>
+            <div className="project-content">
+              <div className="project-technologies">{project.technologies.map(tech => <span key={tech}>{tech}</span>)}</div>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <div className="project-links">
+                {project.github && <a href={project.github} target="_blank" rel="noopener noreferrer"><Github size={15} />GitHub<ArrowUpRight size={14} /></a>}
+                {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer">Live Demo<ArrowUpRight size={14} /></a>}
+                {project.playStore && <a href={project.playStore} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on Google Play`}><Smartphone size={15} />Google Play<ArrowUpRight size={14} /></a>}
+                {project.appStore && <a href={project.appStore} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on App Store`}>App Store<ArrowUpRight size={14} /></a>}
+              </div>
+            </div>
+          </article>)}
+        </div>
+        <div className="section-action"><a className="portfolio-button secondary" href="https://github.com/mahmudrafi24" target="_blank" rel="noopener noreferrer"><Github size={17} />View All Projects<ArrowUpRight size={16} /></a></div>
       </div>
     </section>
   );
