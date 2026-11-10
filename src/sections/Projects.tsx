@@ -3,15 +3,6 @@ import { ArrowUpRight, Github, Smartphone, Expand } from 'lucide-react';
 
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
-const portraitScreenshots = new Set(['/images/AlphaTrack.jpg', '/images/Senaeya.jpg', '/images/Deliverly.jpg', '/images/projectFinder.jpg', '/images/YogawithJen.jpg']);
-
-function AppPreview({ image, title }: { image: string; title: string }) {
-  const portrait = portraitScreenshots.has(image);
-  return <div className={portrait ? 'app-phone' : 'app-existing-mockup'}>
-    <img src={image} alt={`${title} application preview`} loading="lazy" />
-  </div>;
-}
-
 const projects = [
   {
     title: 'Image Picker',
@@ -129,13 +120,14 @@ export default function Projects() {
           {filters.map(category => <button key={category} aria-pressed={filter === category} onClick={() => setFilter(category)}>{category}</button>)}
         </div>
         <p className="sr-only" role="status">{visibleProjects.length} projects shown</p>
-        <div className="project-showcase">
-          {visibleProjects.map(project => <article className="project-card app-project" key={project.title}>
+        <div className="project-phone-grid">
+          {visibleProjects.map(project => <article className="project-device" key={project.title}>
+            <div className="project-device-screen" tabIndex={0} role="region" aria-label={`${project.title} project details`}>
+            <div className="project-device-bar"><Smartphone size={13} /><span>{project.category}</span></div>
             <Dialog>
               <DialogTrigger asChild>
-                <button className="app-preview-stage" aria-label={`Enlarge ${project.title} preview`}>
-                  <span className="app-preview-label"><Smartphone size={14} />{project.category}</span>
-                  <AppPreview image={project.image} title={project.title} />
+                <button className="project-device-preview" aria-label={`Enlarge ${project.title} preview`}>
+                  <img src={project.image} alt={`${project.title} application preview`} loading="lazy" />
                   <span className="app-preview-expand"><Expand size={14} />Enlarge preview</span>
                 </button>
               </DialogTrigger>
@@ -156,6 +148,8 @@ export default function Projects() {
                 {project.appStore && <a href={project.appStore} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on App Store`}>App Store<ArrowUpRight size={14} /></a>}
               </div>
             </div>
+            </div>
+            <div className="project-device-home" aria-hidden="true" />
           </article>)}
         </div>
         <div className="section-action"><a className="portfolio-button secondary" href="https://github.com/mahmudrafi24" target="_blank" rel="noopener noreferrer"><Github size={17} />View All Projects<ArrowUpRight size={16} /></a></div>

@@ -472,3 +472,24 @@ footer p, footer li { font-size: 12px; }
 @media (prefers-reduced-motion: reduce) {
   .app-preview-stage:hover .app-phone { transform: none; }
 }
+
+/* Keep the entire project presentation inside a mobile application screen. */
+.project-phone-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 38px; align-items: start; padding: 12px 10px; }
+.project-device { position: relative; min-width: 0; padding: 8px 7px 18px; background: #141a27; border: 1px solid #677086; border-radius: 36px; box-shadow: 0 18px 40px #0004, inset 0 0 0 3px #272f40; }
+.project-device::before { content: ''; position: absolute; right: -4px; top: 115px; height: 42px; width: 3px; border-radius: 2px; background: #677086; }
+.project-device-screen { height: 640px; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; border-radius: 28px; background: var(--color-surface); scrollbar-width: thin; scrollbar-color: var(--color-border) transparent; }
+.project-device-screen:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+.project-device-bar { display: flex; align-items: center; gap: 7px; padding: 16px 16px 12px; font: 10px/1.5 ui-monospace, monospace; color: var(--color-text-secondary); border-bottom: 1px solid var(--color-border); }
+.project-device-preview { display: flex; position: relative; width: 100%; height: 265px; padding: 12px 16px 30px; align-items: center; justify-content: center; background: var(--color-bg); cursor: zoom-in; }
+.project-device-preview img { height: 100%; width: 100%; object-fit: contain; border-radius: 8px; }
+.project-device-preview .app-preview-expand { position: absolute; bottom: 7px; padding: 3px 6px; font-size: 8px; border: 0; background: transparent; }
+.project-device .project-content { padding: 20px 18px 28px; }
+.project-device .project-content h3 { font-size: 23px; line-height: 1.25; margin-bottom: 14px; }
+.project-device .project-content p { font-size: 12px; line-height: 1.85; margin-bottom: 20px; }
+.project-device .project-technologies { margin-bottom: 15px; gap: 5px; }
+.project-device .project-technologies span { font-size: 9px; }
+.project-device .project-links { gap: 12px; padding-top: 15px; }
+.project-device .project-links a { font-size: 10px; }
+.project-device-home { position: absolute; bottom: 7px; left: calc(50% - 35px); height: 4px; width: 70px; background: #8791a7; border-radius: 4px; }
+@media (max-width: 1023px) { .project-phone-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; } }
+@media (max-width: 639px) { .project-phone-grid { grid-template-columns: minmax(0, 350px); justify-content: center; padding: 6px; gap: 30px; } .project-device-screen { height: 650px; } }
